@@ -1,3 +1,15 @@
 import { Routes } from '@angular/router';
 
-export const routes: Routes = [];
+export const routes: Routes = [
+  { path: '', redirectTo: 'list', pathMatch: 'full' },
+  {
+    path: 'list',
+    title: 'Todos',
+    loadComponent: () => import('./listing/listing').then((c) => c.Listing), //lazy loading
+  },
+  {
+    path: 'create',
+    title: 'Add a new Todo',
+    loadComponent: () => import('./inserting/inserting').then((c) => c.Inserting),
+  },
+];

@@ -16,11 +16,11 @@ export class Inserting {
   private router = inject(Router);
 
   todoForm = new FormGroup({
-    title: new FormControl('', Validators.required),
-    body: new FormControl('', Validators.required),
-    createdAt: new FormControl(''),
-    updatedAt: new FormControl(''),
-    status: new FormControl(''),
+    title: new FormControl<string>('', { nonNullable: true, validators: Validators.required }),
+    body: new FormControl<string>('', { nonNullable: true, validators: Validators.required }),
+    createdAt: new FormControl<string>(''),
+    updatedAt: new FormControl<string>(''),
+    status: new FormControl<string>(''),
   });
 
   onSubmit() {
@@ -30,7 +30,7 @@ export class Inserting {
       body: this.todoForm.get('body')?.value!,
       createdAt: new Date(),
       updatedAt: new Date(),
-      status: 'Ongoing',
+      status: 'Pending',
     };
 
     this.listService.addTodo(todo);

@@ -29,6 +29,7 @@ export class Listing {
 
   completeTodo(todo: Todo, event: Event) {
     const checked = (event.target as HTMLInputElement).checked;
-    todo.status = checked ? 'completed' : 'pending';
+    todo.status = checked ? 'Completed' : 'Pending';
+    todo.updatedAt = new Date();
   }
 }

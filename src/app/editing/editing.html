@@ -1,0 +1,23 @@
+<form [formGroup]="todoForm" (ngSubmit)="onSubmit()">
+  <div class="container mt-5">
+    <div class="input-group mb-3">
+      <span class="input-group-text" id="title-addon">Title</span>
+      <input
+        type="text"
+        class="form-control"
+        aria-label="Title"
+        aria-describedby="title-addon"
+        formControlName="title"
+      />
+    </div>
+    <div class="input-group">
+      <span class="input-group-text">Description</span>
+      <textarea class="form-control" aria-label="Description" formControlName="body"></textarea>
+    </div>
+    <div class="d-grid d-md-flex justify-content-md-end">
+      <button type="submit" class="btn btn-primary mt-3" [disabled]="!todoForm.valid">
+        Update todo
+      </button>
+    </div>
+  </div>
+</form>

@@ -9,7 +9,7 @@
         <th scope="col">Title</th>
         <th scope="col">Description</th>
         <th scope="col">Status</th>
-        <th scope="col">Created Date</th>
+        <th scope="col">Last Updated</th>
         <th scope="col">Actions</th>
       </tr>
     </thead>
@@ -22,7 +22,7 @@
                 class="form-check-input"
                 type="checkbox"
                 id="updateStatus"
-                [checked]="todo.status === 'complete'"
+                [checked]="todo.status === 'Completed'"
                 (change)="completeTodo(todo, $event)"
               />
             </div>
@@ -30,7 +30,7 @@
           <td>{{ todo.title }}</td>
           <td>{{ todo.body }}</td>
           <td>{{ todo.status }}</td>
-          <td>{{ todo.createdAt | date: 'dd/MM/yyyy' }}</td>
+          <td>{{ todo.updatedAt | date: 'dd/MM/yyyy' }}</td>
           <td class="text-center">
             <button
               type="button"
@@ -39,6 +39,14 @@
               (click)="deleteFromList(todo.id)"
             >
               <i class="bi bi-x-circle-fill"></i>
+            </button>
+            <button
+              type="button"
+              id="editButton"
+              class="btn btn-link p-0 delete-btn"
+              [routerLink]="['/edit', todo.id]"
+            >
+              <i class="bi bi-pencil-square"></i>
             </button>
           </td>
         </tr>

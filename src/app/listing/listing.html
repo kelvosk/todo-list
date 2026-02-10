@@ -15,7 +15,7 @@
     </thead>
     <tbody>
       @for (todo of listAll(); track todo.id; let i = $index) {
-        <tr>
+        <tr [ngClass]="todo.status === 'Completed' ? 'strikeout' : ''">
           <th scope="row">
             <div class="form-check">
               <input
@@ -32,11 +32,37 @@
           <td>{{ todo.status }}</td>
           <td>{{ todo.updatedAt | date: 'dd/MM/yyyy' }}</td>
           <td class="text-center">
+            <ng-template #content let-c="close" let-d="dismiss">
+              <div class="modal-header">
+                <h4 class="modal-title" id="modal-basic-title">Delete Todo?</h4>
+                <button
+                  type="button"
+                  class="btn-close"
+                  aria-label="Close"
+                  (click)="d('Cross click')"
+                ></button>
+              </div>
+              <div class="modal-body">
+                <p>This todo is gonna be deleted permanently, do you want to proceed?</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" (click)="d('close')">
+                  Nevermind!
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-outline-danger"
+                  (click)="deleteFromList(todo.id)"
+                >
+                  Yes! Delete
+                </button>
+              </div>
+            </ng-template>
             <button
               type="button"
               id="deleteButton"
               class="btn btn-link p-0 text-danger delete-btn"
-              (click)="deleteFromList(todo.id)"
+              (click)="openModal(content)"
             >
               <i class="bi bi-x-circle-fill"></i>
             </button>

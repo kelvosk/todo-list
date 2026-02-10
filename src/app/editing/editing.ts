@@ -48,6 +48,7 @@ export class Editing implements OnInit {
             status: this.todo.status,
           };
           this.listService.getTodos().splice(index, 1, updatedTodo);
+          this.listService.updateTodo();
 
           this.router.navigate(['/list']);
         }
